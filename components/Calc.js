@@ -12,6 +12,13 @@ class Calc extends Component {
     })
   }
 
+  ejecutarOperacion = ()=> {
+    const resultados = eval(this.state.res)
+    this.setState({
+      res: resultados
+    })
+  }
+
   render() {
     return (
       <div>
@@ -34,18 +41,22 @@ class Calc extends Component {
           }
           <div className="operadores center-align">
             {
-              ["+", "-", "/", "*", ""].map(digit => {
+              ["+", "-", "/", "*"].map(digit => {
                 return (
-                  <a
-                    className="waves-effect waves-light btn deep-orange darken-1"
+                  <a className="waves-effect waves-light btn deep-orange darken-1"
                     onClick={() => this.onDigit(digit)}>
-                    {digit === "" ? "C" : digit}
+                    {digit}
                   </a>
                 )
               }
               )
             }
+
+            <a className="waves-effect waves-light btn deep-orange darken-1"
+              onClick={() => this.setState({res:""})}>C</a>
           </div>
+          <a className="waves-effect waves-light btn deep-orange darken-1"
+            onClick={this.ejecutarOperacion}>Enter</a>
         </div>
 
         <style jsx>
